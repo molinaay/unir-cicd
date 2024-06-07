@@ -18,7 +18,10 @@ ejecutar-pruebas-unitarias:
 						docker exec -i contenedor-api-calculadora-server pytest rest/ --cov --cov-report=xml:resultados/cobertura/pruebas_rest.xml --cov-report=html:resultados/cobertura/pruebas_rest --junit-xml=resultados/junit/pruebas_rest_junit.xml
 
 						docker exec -i contenedor-api-calculadora-server junit2html resultados/junit/pruebas_rest_junit.xml resultados/junit/pruebas_rest_junit.html
+
 ejecutar-pruebas-e2e:
+					docker compose up -d servicio-cypress
 					docker exec -i contenedor-cypress cypress run --reporter junit --reporter-options "mochaFile=/e2e/cypress/resultados/junit/pruebas_cypress_junit.xml"
+					docker exec -i contenedor-api-calculadora-server junit2html resultados/junit/pruebas_cypress_junit.xml resultados/junit/pruebas_cypress_junit.html
 
 
