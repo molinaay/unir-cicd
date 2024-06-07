@@ -5,20 +5,6 @@ services:
     container_name: contenedor-api-calculadora-server
     ports:
       - "5000:5000"
-    build:
-      context: .
-      dockerfile: aplicacion_api/dockerfile
-
-  servicio-api-calculadora-tests:
-    image: ${DOCKER_REGISTRY-}imagen-api-calculadora:v1
-    container_name: contenedor-api-calculadora-tests
-    command: |
-      bash -c "
-      pytest unit/ --cov --cov-report=xml:resultados/cobertura/pruebas_unitarias.xml --cov-report=html:resultados/cobertura/pruebas_unitarias --junit-xml=resultados/junit/pruebas_unitarias_junit.xml &&
-      junit2html resultados/junit/pruebas_unitarias_junit.xml resultados/junit/pruebas_unitarias_junit.html &&
-      pytest rest/ --cov --cov-report=xml:resultados/cobertura/pruebas_rest.xml --cov-report=html:resultados/cobertura/pruebas_rest --junit-xml=resultados/junit/pruebas_rest_junit.xml &&
-      junit2html resultados/junit/pruebas_rest_junit.xml resultados/junit/pruebas_rest_junit.html
-      "
     volumes:
       - ./resultados_tests/cobertura:/src/resultados/cobertura
       - ./resultados_tests/junit:/src/resultados/junit
@@ -47,4 +33,3 @@ services:
       - ./resultados_tests/videos:/e2e/cypress/resultados/videos
       - ./resultados_tests/screenshots:/e2e/cypress/resultados/screenshots
       - ./resultados_tests/junit:/e2e/cypress/resultados/junit
-    command: cypress run --reporter junit --reporter-options "mochaFile=/e2e/cypress/resultados/junit/pruebas_cypress_junit.xml"

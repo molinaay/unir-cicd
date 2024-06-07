@@ -21,10 +21,10 @@ class Potencia_Tests(unittest.TestCase):
         self.resultadoObtenido=urlopen(self.url, timeout=DEFAULT_TIMEOUT).status
         self.assertEqual(self.resultadoEsperado,self.resultadoObtenido)
 
-    def test_Potencia_Exponente_Negativo(self):      
+    def test_Potencia_Parametro_Incorrecto(self):      
         try:
          self.base=2
-         self.exponente=-3
+         self.exponente="z"
          self.url=f"{BASE_URL}calcule_potencia?base={self.base}&exponente={self.exponente}"
          self.resultadoEsperado=http.client.BAD_REQUEST
          urlopen(self.url, timeout=DEFAULT_TIMEOUT)
