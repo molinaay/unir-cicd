@@ -1,0 +1,5 @@
+FROM cypress/included:latest
+
+
+COPY pruebas_e2e/integration ./integration
+COPY pruebas_e2e/cypress.json .

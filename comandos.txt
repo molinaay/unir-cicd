@@ -1,0 +1,3 @@
+pytest unit/ --cov --cov-report=xml:results/cov_result.xml --cov-report=html:results/cov_result --junit-xml=results/unit_result.xml
+junit2html results/unit_result.xml results/unit_result.html
+curl -v http://servicio-api-calculadora:5000/calcule_logaritmo_base_10?numero=9

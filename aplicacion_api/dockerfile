@@ -1,0 +1,18 @@
+# Utiliza una imagen base de Python
+FROM python:3.12-slim
+
+EXPOSE 5000
+# Establece el directorio de trabajo en /app
+WORKDIR /src
+
+# Copia el archivo requirements.txt al contenedor
+COPY aplicacion_api/requirements.txt .
+
+COPY aplicacion_api/app ./app
+COPY aplicacion_api/rest ./rest
+COPY aplicacion_api/unit ./unit
+
+# Instala las dependencias desde el archivo requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+CMD ["python", "app/Api.py"]

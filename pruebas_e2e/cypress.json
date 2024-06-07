@@ -1,0 +1,20 @@
+{
+    "experimentalCodeCoverage": true,
+    "env": {
+      "coverage": {
+        "reporter": [
+          "text",
+          "html",
+          "json",
+          "lcov",
+          "cobertura"
+        ],
+        "reportDir": "coverage"
+      }
+    },
+    "pluginsFile": false,
+    "supportFile": false,
+    "defaultCommandTimeout": 1000,
+    "videosFolder": "cypress/resultados/videos",
+    "screenshotsFolder": "cypress/resultados/screenshots"
+  }

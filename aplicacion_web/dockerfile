@@ -1,0 +1,11 @@
+FROM nginx:latest
+
+
+COPY aplicacion_web/index.html /usr/share/nginx/html
+COPY aplicacion_web/constants.js /usr/share/nginx/html/constants.js
+
+# Exponer el puerto 80
+EXPOSE 80
+
+# Comando para ejecutar NGINX en el inicio del contenedor
+CMD ["nginx", "-g", "daemon off;"]
