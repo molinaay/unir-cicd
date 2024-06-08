@@ -5,23 +5,19 @@ limpiar-contenedores:
 					docker rm -f contenedor-cypress
 limpiar-imagenes:
 					docker rmi -f imagen-api-calculadora:v1
-					docker rmi -f imagen-web-calculadora:v1					
+					docker rmi -f imagen-web-calculadora:v1	
+									
 arrancar-server-api:
 					docker compose up -d servicio-api-calculadora
 arrancar-server-web:
 					docker compose up -d servicio-web-calculadora
+
 ejecutar-pruebas-unitarias:
 						docker exec -i contenedor-api-calculadora-server pytest unit/ --cov --cov-report=xml:resultados/cobertura/pruebas_unitarias.xml --cov-report=html:resultados/cobertura/pruebas_unitarias --junit-xml=resultados/junit/pruebas_unitarias_junit.xml
 
-						docker exec -i contenedor-api-calculadora-server junit2html resultados/junit/pruebas_unitarias_junit.xml resultados/junit/pruebas_unitarias_junit.html
-
 						docker exec -i contenedor-api-calculadora-server pytest rest/ --cov --cov-report=xml:resultados/cobertura/pruebas_rest.xml --cov-report=html:resultados/cobertura/pruebas_rest --junit-xml=resultados/junit/pruebas_rest_junit.xml
-
-						docker exec -i contenedor-api-calculadora-server junit2html resultados/junit/pruebas_rest_junit.xml resultados/junit/pruebas_rest_junit.html
 
 ejecutar-pruebas-e2e:
 					docker compose up -d servicio-cypress
-					docker exec -i contenedor-cypress cypress run --reporter junit --reporter-options "mochaFile=/e2e/cypress/resultados/junit/pruebas_cypress_junit.xml"
-					docker exec -i contenedor-api-calculadora-server junit2html resultados/junit/pruebas_cypress_junit.xml resultados/junit/pruebas_cypress_junit.html
 
 

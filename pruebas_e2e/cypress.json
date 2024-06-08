@@ -1,20 +1,12 @@
-{
-    "experimentalCodeCoverage": true,
-    "env": {
-      "coverage": {
-        "reporter": [
-          "text",
-          "html",
-          "json",
-          "lcov",
-          "cobertura"
-        ],
-        "reportDir": "coverage"
-      }
-    },
+  {
     "pluginsFile": false,
     "supportFile": false,
     "defaultCommandTimeout": 1000,
     "videosFolder": "cypress/resultados/videos",
-    "screenshotsFolder": "cypress/resultados/screenshots"
+    "screenshotsFolder": "cypress/resultados/screenshots",
+    "reporter": "junit",
+    "reporterOptions": {
+      "mochaFile": "cypress/resultados/junit/pruebas_cypress_junit.xml",
+      "toConsole": false
+    }
   }
